@@ -1,9 +1,20 @@
 class Tetrahedron:
+    """
+    Класс, который описывает правильный тетраэдр.
+    """
     def __init__(self, edge: float):
         self.edge = float(edge)
+        
     def surface(self):
-        return self.edge**2 * 3**0.5    
+        """
+        Функция, которая вычисляет площадь поверхности.
+        """
+        return self.edge**2 * 3**0.5
+        
     def volume(self):
+        """
+        Функция, которая вычисляет объём.
+        """
         return self.edge**3 / 12 * 2**0.5
  
 # >>> t1 = Tetrahedron(5)

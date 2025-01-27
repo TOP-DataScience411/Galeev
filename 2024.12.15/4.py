@@ -2,8 +2,11 @@ from pathlib import Path
 from csv import reader, writer
 
 class CountableNouns:
+    """
+    Класс, который предоставляет интерфейс для работы с файловой базой существительных.
+    """
     db_path: Path = Path(r'C:\Users\79526\Galeev\2024.12.15\words.csv')
-    words: dict[str, tuple[str, str]] = {}
+    words: dict[str, tuple[str, str]] = {} # соответствие между существительным в единственном числе и кортежем из двух словоформ/слов во множественном числе, согласующихся с числительными "два" и "пять"
     with open(db_path, newline='') as csvfile:
         nouns = reader(csvfile, lineterminator='\n')
         for row in nouns:
@@ -11,6 +14,9 @@ class CountableNouns:
             
     @classmethod
     def pick(cls, number: int, word: str) -> str:
+        """
+        Функция, которая принимает в качестве аргументов число и существительное для согласования в единственном числе, возвращает согласованное с переданным числом существительное.
+        """
         cnt_nouns = cls.words.get(word)
         if not cnt_nouns:
             cls.save_words(word)
@@ -30,7 +36,9 @@ class CountableNouns:
             
     @classmethod        
     def save_words(cls, word1: str = None) -> None:
-        
+        """
+        Функция, которая запрашивает в stdin у пользователя два или три слова согласующихся с числительными, добавляет полученные значения в поле класса words и дописывает их в файл с базой существительных.
+        """
         if word1:
             print(f'существительное "{word1}" отсутствует в базе')
             word2 = input('  введите слово, согласующееся с числительным "два":')
