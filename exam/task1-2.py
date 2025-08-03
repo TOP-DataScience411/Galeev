@@ -49,7 +49,9 @@ y = data['y']
 # fig.savefig(data_dir/'residual_threshold.png', dpi=100)
 
 # Устойчивая регрессия
+# почему именно эта модель?
 ransac = RANSACRegressor(
+                        # откуда значение 0.61?
                         residual_threshold=0.61,
                         max_trials=1000,
                         random_state=20
@@ -94,3 +96,7 @@ print(f'r2_score = {r2_score (y_test,y_pred):.2f}')
 
 # rmse = 0.30
 # r2_score = 0.99
+
+
+# ИТОГ: хорошо — 9/12
+
